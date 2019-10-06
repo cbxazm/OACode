@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.4//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cbx.dao.EmployeeDao">
+    <!--配置resultMap-->
+    <resultMap id="employee" type="Employee">
+         <id property="sn" column="sn" javaType="String"></id>
+        <result property="password" column="password" javaType="String"></result>
+        <result property="name" column="name" javaType="String"></result>
+        <result property="departmentSn" column="department_sn" javaType="String"></result>
+        <result property="post" column="post" javaType="String"></result>
+        <!--关联-->
+        <association property="department" column="department_sn" javaType="Department">
+            <!--配置department表中的对应关系-->
+            <id property="sn" column="dsn" javaType="String"></id>
+            <result property="name" column="dname" javaType="String"></result>
+        </association>
+    </resultMap>
+    <!--parameterType可以直接写类名，不需要写全限定类名，因为之前已经配置过别名了-->
+<insert id="insert" parameterType="Employee">
+<!-- 写的是实体类名，不是表的字段名-->
+   insert into employee values(#{sn},#{password},#{name},#{departmentSn},#{post})
+</insert>
+    <update id="update" parameterType="Employee">
+        update employee set name=#{name},password=#{password},department_sn=#{departmentSn},post=#{post} where sn=#{sn};
+    </update>
+    <delete id="delete" parameterType="String">
+        delete from department where sn=#{sn}
+    </delete>
+    <select id="select" parameterType="String" resultMap="employee">
+           select e.*,d.sn dsn,d.name dname from employee e left join department d on d.sn=e.department_sn where e.sn=#{sn}
+    </select>
+    <select id="selectAll" resultMap="employee">
+         select e.*,d.sn dsn,d.name dname from employee e left join department d on d.sn=e.department_sn
+    </select>
+    <select id="selectByDepartmentAndPost" resultMap="employee">
+    select e.*,d.sn dsn,d.name dname from employee e left join department d on d.sn=e.department_sn
+--     恒成立条件
+    where e.sn is not NULL
+    <if test="dsn!=null">
+        and e.department_sn=#{dsn}
+    </if>
+        <if test="post!=null">
+            and e.post=#{post}
+        </if>
+    </select>
+</mapper>
