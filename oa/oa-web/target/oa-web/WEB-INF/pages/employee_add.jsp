@@ -9,6 +9,7 @@
         </div>
         <div class="admin-form theme-primary mw1000 center-block" style="padding-bottom: 175px;">
             <div class="panel heading-border">
+                <%--这里的modelAttribute用来将表单里的东西填入employee对象中--%>
                 <form:form action="/employee/add" modelAttribute="employee"  id="admin-form" name="addForm">
                     <div class="panel-body bg-light">
                         <div class="section-divider mt20 mb40">
@@ -35,6 +36,7 @@
                         <div class="section row">
                             <div class="col-md-6">
                                 <label for="sn" class="field select">
+                                    <%--itermLabel为显示的东西，itemValue为取值，填写的value值会写到departmentSn这个属性中去--%>
                                     <form:select path="departmentSn" items="${dlist}" itemLabel="name" itemValue="sn" cssClass="gui-input" placeholder="所属部门..."/>
                                     <i class="arrow double"></i>
                                 </label>

@@ -18,7 +18,7 @@
             <result property="post" column="dpost" javaType="String"></result>
         </association>
     </resultMap>
-    <!--需要获取数据库自动生成主键值，下面需要使用-->
+    <!--需要获取数据库自动生成主键值，下面需要使用，报销单编号后面获取报销单条目需要使用-->
    <insert id="insert" parameterType="ClaimVoucher" useGeneratedKeys="true" keyProperty="id">
        insert into claim_voucher(cause,create_sn,create_time,next_deal_sn,total_amount,status)
         values(#{cause},#{createSn},#{createTime},#{nextDealSn},#{totalAmount},#{status})

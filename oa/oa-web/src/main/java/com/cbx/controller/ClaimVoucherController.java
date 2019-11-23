@@ -15,18 +15,20 @@ import java.util.Map;
 @Controller
 @RequestMapping("/claim_voucher")
 public class ClaimVoucherController {
-
     @Autowired
  private ClaimVoucherBiz claimVoucherBiz;
     @RequestMapping("/to_add")
     public String toAdd(Map<String,Object> map){
         map.put("items", Contant.getItems());
+//        System.out.println(map.get(0));
+        //这个页面填写的信息都存储在info的map集合中
         map.put("info",new ClaimVoucherInfo());
         return "claim_voucher_add";
     }
     @RequestMapping("/add")
     public String add(HttpSession session, ClaimVoucherInfo info){
         Employee employee = (Employee)session.getAttribute("employee");
+        //设置该报销单的创建者编号
         info.getClaimVoucher().setCreateSn(employee.getSn());
         claimVoucherBiz.save(info.getClaimVoucher(),info.getItems());
         return "redirect:deal";
@@ -54,18 +56,20 @@ public class ClaimVoucherController {
     }
 
     @RequestMapping("/to_update")
+//    这里定义的id用于接收页面传递过来的id
     public String toUpdate(int id,Map<String,Object> map){
         map.put("items", Contant.getItems());
         ClaimVoucherInfo info =new ClaimVoucherInfo();
-        info.setClaimVoucher(claimVoucherBiz.get(id));
-        info.setItems(claimVoucherBiz.getItem(id));
+        info.setClaimVoucher(claimVoucherBiz.get(id));//获取报销单的信息
+//        System.out.println(claimVoucherBiz.get(id).getId());
+        info.setItems(claimVoucherBiz.getItem(id));//获取了该报销单的报销单条目集合
         map.put("info",info);
         return "claim_voucher_update";
     }
     @RequestMapping("/update")
     public String update(HttpSession session, ClaimVoucherInfo info){
         Employee employee = (Employee)session.getAttribute("employee");
-        info.getClaimVoucher().setCreateSn(employee.getSn());
+        info.getClaimVoucher().setCreateSn(employee.getSn());//设置报销单的编号
         claimVoucherBiz.update(info.getClaimVoucher(),info.getItems());
         return "redirect:deal";
     }
@@ -83,6 +87,7 @@ public class ClaimVoucherController {
         DealRecord dealRecord=new DealRecord();
         dealRecord.setClaimVoucherId(id);
         map.put("record",dealRecord);
+//        System.out.println(map.get("record").toString());
         return "claim_voucher_check";
     }
     @RequestMapping("/check")

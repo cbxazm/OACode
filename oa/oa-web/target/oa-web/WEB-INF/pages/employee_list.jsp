@@ -1,8 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <jsp:include page="top.jsp"/>
-
 <section id="content" class="table-layout animated fadeIn">
     <div class="tray tray-center">
         <div class="content-header">
@@ -67,7 +65,7 @@
                             </td>
                             <td>
                                 <a href="/employee/to_update?sn=${emp.sn}">编辑</a>
-                                <a href="/employee/remove?sn=${emp.sn}">删除</a>
+                               <button id="delete"><a href="/employee/remove?sn=${emp.sn}">删除</a></button>
                             </td>
                         </tr>
                         </c:forEach>

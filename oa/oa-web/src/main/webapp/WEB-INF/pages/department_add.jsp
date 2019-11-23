@@ -26,6 +26,7 @@
                             <div class="col-md-6">
                                 <label for="name" class="field prepend-icon">
                                     <%--path属性就相当于id="name",name="name"--%>
+                                    <%--输入框填入的东西会写入department.name--%>
                                     <form:input path="name" cssClass="gui-input" placeholder="名称..." />
                                     <label for="name" class="field-icon">
                                         <i class="fa fa-user"></i>

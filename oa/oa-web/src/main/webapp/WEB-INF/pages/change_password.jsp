@@ -1,6 +1,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="top.jsp"/>
-
+<script>
+    // window.onload=function () {
+    //
+    // }
+ function blur1() {
+     var new1=document.getElementById("new1").value;
+     var new2=document.getElementById("new2").value;
+     var errorMsg=document.getElementById("error");
+     if(new1!=new2){
+         errorMsg.innerHTML="输入两次密码不一致";
+     }
+ }
+</script>
 <section id="content" class="table-layout animated fadeIn">
     <div class="tray tray-center">
         <div class="content-header">
@@ -35,7 +47,8 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="new2" class="field prepend-icon">
-                                    <input type="password" name="new2" id="new2" class="gui-input" placeholder="重复密码...">
+                                    <input type="password" name="new2" id="new2" class="gui-input" placeholder="重复密码..." onblur="blur1();">
+                                  <span id="error"></span>
                                     <label for="new2" class="field-icon">
                                         <i class="fa fa-lock"></i>
                                     </label>

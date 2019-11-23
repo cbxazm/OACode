@@ -13,6 +13,7 @@ public class LoginInterceptor  implements HandlerInterceptor{
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 //        要对登录相关的一些路径进行放行
         String url=request.getRequestURI();
+//        System.out.println(url);
         if(url.toLowerCase().indexOf("login")>=0){
          return true;
         }

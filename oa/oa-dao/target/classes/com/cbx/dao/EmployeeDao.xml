@@ -9,6 +9,7 @@
         <result property="departmentSn" column="department_sn" javaType="String"></result>
         <result property="post" column="post" javaType="String"></result>
         <!--关联-->
+        <!--多对一关联-->
         <association property="department" column="department_sn" javaType="Department">
             <!--配置department表中的对应关系-->
             <id property="sn" column="dsn" javaType="String"></id>
@@ -24,7 +25,7 @@
         update employee set name=#{name},password=#{password},department_sn=#{departmentSn},post=#{post} where sn=#{sn};
     </update>
     <delete id="delete" parameterType="String">
-        delete from department where sn=#{sn}
+        delete from employee where sn=#{sn}
     </delete>
     <select id="select" parameterType="String" resultMap="employee">
            select e.*,d.sn dsn,d.name dname from employee e left join department d on d.sn=e.department_sn where e.sn=#{sn}

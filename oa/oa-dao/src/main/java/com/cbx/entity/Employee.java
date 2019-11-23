@@ -14,6 +14,7 @@ public class Employee {
     /**
      * 从表（employee）的实体应该包含一个主表(Department)实体的对象引用
      * @return
+     * 一个部门多个员工
      */
     private Department department;
 
@@ -65,5 +66,17 @@ public class Employee {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "sn='" + sn + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", departmentSn='" + departmentSn + '\'' +
+                ", post='" + post + '\'' +
+                ", department=" + department +
+                '}';
     }
 }

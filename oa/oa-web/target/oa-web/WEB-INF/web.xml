@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-  <!--这里的所有请求交给默认的servlet来处理-->
+  <!--这里的所有请求交给默认的servlet来处理,相当于处理静态资源-->
   <servlet-mapping>
     <servlet-name>default</servlet-name>
     <url-pattern>/assets/*</url-pattern>

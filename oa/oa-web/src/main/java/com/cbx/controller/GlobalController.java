@@ -21,6 +21,7 @@ public class GlobalController {
     @RequestMapping("/login")
     public String login(HttpSession session, @RequestParam String sn, @RequestParam String password){
         Employee employee=gloabalBiz.login(sn,password);
+//        System.out.println(employee);
         if(employee==null){
               return "redirect:to_login";
         }
@@ -35,7 +36,7 @@ public class GlobalController {
     @RequestMapping("/quit")
     public String quit(HttpSession session){
         session.setAttribute("employee",null);
-        return "redirect:self";
+        return "redirect:self";//他还是会自跳转到登录的页面，因为设置了登录拦截器
     }
 //  修改密码
 @RequestMapping("/to_change_password")

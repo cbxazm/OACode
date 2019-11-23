@@ -25,14 +25,16 @@ public class ClaimVoucherBizImpl implements ClaimVoucherBiz {
     private DealRecordDao dealRecordDao;
     @Autowired
     private EmployeeDao employeeDao;
+    //保存报销单以及它的条目
     public void save(ClaimVoucher claimVoucher, List<ClaimVoucherItem> items) {
+        //报销单的事由，总金额在页面获取，创建者编号controller设置
         claimVoucher.setCreateTime(new Date());
         claimVoucher.setNextDealSn(claimVoucher.getCreateSn());
         claimVoucher.setStatus(Contant.CLAIMVOUCHER_CREATED);
         claimVoucherDao.insert(claimVoucher);
         for (ClaimVoucherItem item : items) {
-            item.setClaimVoucherId(claimVoucher.getId());
-            claimVoucherItemDao.insert(item);
+            item.setClaimVoucherId(claimVoucher.getId());//报销单条目的其他三个讯信息都在页面收集了，这个条目的报销单编号需要在业务层设置
+            claimVoucherItemDao.insert(item);//在数据库中插入报销单
         }
     }
 
@@ -53,6 +55,7 @@ public class ClaimVoucherBizImpl implements ClaimVoucherBiz {
     }
 
     public List<ClaimVoucher> getForDeal(String sn) {
+        //获取待处理报销单
         return claimVoucherDao.selectByNextDealSn(sn);
     }
 
@@ -72,13 +75,15 @@ public class ClaimVoucherBizImpl implements ClaimVoucherBiz {
                 }
             }
             if (!isHave) {
-                //删除不要的条目
+                //如果之前的条目不在新创建的条目中，直接删除了
                 claimVoucherItemDao.delete(old.getId());
             }
         }
         for (ClaimVoucherItem item : items) {
             item.setClaimVoucherId(claimVoucher.getId());
+//            System.out.println(item.getId());
             if (item.getId() > 0) {
+                //如果数据库库里有改数据，则更新，没有就插入一下
                 claimVoucherItemDao.update(item);
             } else {
                 claimVoucherItemDao.insert(item);

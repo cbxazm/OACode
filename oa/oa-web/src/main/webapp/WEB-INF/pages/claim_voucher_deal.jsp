@@ -71,6 +71,7 @@
                             <td>
                                 <%--新创建或者被打回了可以进行提交操作--%>
                                 <c:if test="${cv.status==Contant.CLAIMVOUCHER_CREATED || cv.status==Contant.CLAIMVOUCHER_BACK}">
+                                    <%--带着报销单的编号传递给下一个页面--%>
                                     <a href="/claim_voucher/to_update?id=${cv.id}">修改</a>
                                     <a href="/claim_voucher/submit?id=${cv.id}">提交</a>
                                 </c:if>

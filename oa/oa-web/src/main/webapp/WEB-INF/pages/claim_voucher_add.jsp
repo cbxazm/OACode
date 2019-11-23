@@ -18,6 +18,7 @@
                         </div>
                         <div class="section">
                             <label for="claimVoucher.cause" class="field prepend-icon">
+                                <%--把报销单的事由填入Info中，info.claimvoucher.cause--%>
                                 <form:input path="claimVoucher.cause" cssClass="gui-input" placeholder="事由..."/>
                                 <label for="claimVoucher.cause" class="field-icon">
                                     <i class="fa fa-lock"></i>
@@ -31,6 +32,7 @@
                             <div>
                                 <div class="col-md-3">
                                     <label for="items[0].item" class="field prepend-icon">
+                                        <%--这里的items是指在ClaimVoucherInfo中的那个items，最后填的数据存放在那个items里面--%>
                                         <form:select path="items[0].item" cssClass="gui-input" placeholder="花销类型..." items="${items}"/>
                                     </label>
                                 </div>
@@ -58,6 +60,7 @@
                         <div class="section row">
                             <div class="col-md-3">
                                 <label for="totalMoney" class="field prepend-icon">
+                                    <%--这里的totalMoney是有特殊意义的--%>
                                     <form:input id="totalMoney" path="claimVoucher.totalAmount" cssClass="gui-input" placeholder="总金额..." readonly="true"/>
                                     <label for="totalMoney" class="field-icon">
                                         <i class="fa fa-user"></i>

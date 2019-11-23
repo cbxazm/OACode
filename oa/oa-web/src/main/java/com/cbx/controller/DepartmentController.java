@@ -14,6 +14,7 @@ public class DepartmentController {
     private DepartmentBiz departmentBiz;
     @RequestMapping("/list")
      public String list(Map<String,Object> map){
+        //像页面存入部门信息
         map.put("list",departmentBiz.getAll());
         return "department_list";
     }

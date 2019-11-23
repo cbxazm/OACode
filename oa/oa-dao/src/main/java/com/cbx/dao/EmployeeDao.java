@@ -13,6 +13,6 @@ public interface EmployeeDao {
     void delete(String sn);
     Employee select(String sn);
    List<Employee> selectAll();
-//   两个参数不明确，所以必须使用一个@Param注解，以便在映射文件中调用
+//   两个参数不明确，所以必须使用一个@Param注解，以便在映射文件中调用  dsn:部门编号  post:职位
    List<Employee> selectByDepartmentAndPost(@Param("dsn") String dsn,@Param("post") String post);
 }

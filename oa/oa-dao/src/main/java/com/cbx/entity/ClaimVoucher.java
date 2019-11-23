@@ -5,18 +5,19 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 public class ClaimVoucher {
-    private Integer id;
-    private String cause;
+    private Integer id;//数据库自动生成
+    private String cause;//页面收集
 //创建者编号
-    private String createSn;
+    private String createSn;//表现层的session域获取设置
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
-    private Date createTime;
+    private Date createTime; //业务层填充
 //待处理人编号
-    private String nextDealSn;
-    private Double totalAmount;
-    private String status;
+    private String nextDealSn;//业务层填充
+    private Double totalAmount;//页面收集
+    private String status;//业务层填充
 //多对一的关系映射
     private Employee creater;
+
     private Employee dealer;
 
     public Integer getId() {

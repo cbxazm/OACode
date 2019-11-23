@@ -24,6 +24,7 @@ public class EmployeeController {
     }
     @RequestMapping("/to_add")
     public String toAdd(Map<String,Object> map){
+        //在页面会有modelAttribute属性将employee填充
         map.put("employee",new Employee());
 //        添加部门信息到页面去
         map.put("dlist",departmentBiz.getAll());
@@ -35,6 +36,7 @@ public class EmployeeController {
         employeeBiz.add(employee);
         return "redirect:list";
     }
+//    配置params就是请求路径必须带一个sn的值过来
     @RequestMapping(value = "/to_update",params = "sn")
     public String toUpdate(String sn,Map<String,Object> map){
         map.put("employee",employeeBiz.get(sn));

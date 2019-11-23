@@ -14,7 +14,6 @@ public class ClaimVoucherInfo {
     public ClaimVoucher getClaimVoucher() {
         return claimVoucher;
     }
-
     public void setClaimVoucher(ClaimVoucher claimVoucher) {
         this.claimVoucher = claimVoucher;
     }
